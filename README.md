@@ -1,5 +1,5 @@
 
-# Minimal Console Logger (MCL)
+# Minimalist Console Logger (MCL)
 
 
 ## How to use
