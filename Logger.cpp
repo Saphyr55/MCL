@@ -19,13 +19,7 @@ namespace mcl
 
     Log::~Log() { std::cout << "\033[0m\n"; }
 
-    void Log::send()
-    {
-        std::cout << "[ " << currentDateTimeLogger() << " ] ";
-        std::cout << to_ASCII(color) << severity_to_string(severity) << " : ";
-    }
-
-    const std::string currentDateTimeLogger()
+    const std::string Log::currentDateTimeLogger()
     {
         time_t now = time(0);
         struct tm tstruct;
@@ -33,6 +27,12 @@ namespace mcl
         tstruct = *localtime(&now);
         strftime(buf, sizeof(buf), "%Y-%m-%d | %X", &tstruct);
         return buf;
+    }
+
+    void Log::send()
+    {
+        std::cout << "[ " << currentDateTimeLogger() << " ] ";
+        std::cout << to_ANSI(color) << severity_to_string(severity) << " : ";
     }
 
     const char *Log::severity_to_string(LogSeverity &property)
@@ -52,20 +52,20 @@ namespace mcl
         }
     }
 
-    std::string Log::to_ASCII(ColorLogger color)
+    std::string Log::to_ANSI(ColorLogger color)
     {
         switch (color)
         {
         case ColorLogger::WHITE:
-            return "\033[0;37m";
+            return "\033[0;97m";
         case ColorLogger::YELLOW:
-            return "\033[0;33m";
+            return "\033[0;93m";
         case ColorLogger::RED:
-            return "\033[0;31m";
+            return "\033[0;91m";
         case ColorLogger::GREEN:
-            return "\033[0;32m";
+            return "\033[0;92m";
         default:
-            return "\033[0;37m";
+            return "\033[0;97m";
         }
     }
 }

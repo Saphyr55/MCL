@@ -34,10 +34,10 @@ namespace mcl
     private:
         void send();
         static const char *severity_to_string(LogSeverity &property);
+        const std::string currentDateTimeLogger();
+        std::string to_ANSI(ColorLogger color);
 
-    private:
-        enum class ColorLogger
-        {
+        enum class ColorLogger {
             YELLOW,
             WHITE,
             RED,
@@ -51,10 +51,7 @@ namespace mcl
             _ERROR,
             DEBUG
         };
-
-        std::string to_ASCII(ColorLogger color);
         
-    private:
         LogSeverity severity;
         ColorLogger color;
     };
